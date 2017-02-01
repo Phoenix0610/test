@@ -1,10 +1,10 @@
 resource "aws_vpc" "terraform" {
-     cidr_block = "10.100.0.0/31"
+     cidr_block = "172.17.0.0/16"
 }
 
 resource "aws_subnet" "public_1a" {
     vpc_id = "${aws_vpc.terraform.id}"
-    cidr_block = "10.100.0.0/24"
+    cidr_block = "172.17.0.0/24"
     map_public_ip_on_launch = "true"
     availability_zone = "${var.availability_zone}"
 
@@ -49,11 +49,15 @@ resource "aws_instance" "web01" {
     ami = "${var.aws_ami}"
     instance_type = "${var.instance_type}"
     subnet_id = "${aws_subnet.public_1a.id}"
-    vpc_security_group_ids =["${aws_security_group.Terraform_SG.id}"]
+    vpc_security_group_ids = [
+	"${aws_security_group.Terraform_SG.id}"
+	]
     key_name = "${var.key_name}"
     tags {
         Name = "terraform_launch"
     }
-
 }
 
+output "public_ip" {
+	value = "${aws_instance.web01.public_ip}"
+}
