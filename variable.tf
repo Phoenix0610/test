@@ -14,13 +14,13 @@ variable "aws_ami" {
 }
 
 variable "key_name" {
-	default = "AWS_Tokyo"
+	default = "Tokyo_EC2"
 }
 
 variable "aws_access_key" {
-	default = "AKIAIMQKOPESL7JMLW5A"
+	default = "AKIAIPGGPYTURWHJIWGA"
 }
 
 variable "aws_secret_key" {
-	default = "DNx5GKLLSQJLwxfxTHUeKpAqWNWjvh36q2NURctI"
+	default = "nc7fmRxTW+QlK2A7p1aJFMYvD2eb8yy6EFALSFw2"
 }
